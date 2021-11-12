@@ -34,6 +34,7 @@ statement:        POINT INT INT END_STATEMENT             {point($2, $3);}
                                                             }
                                                             }
               |   ERROR                                   {yyerror();}
+              ;
 
 %%
 
