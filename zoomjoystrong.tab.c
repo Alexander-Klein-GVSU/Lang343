@@ -519,7 +519,7 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    29,    30,    32,    33,    34,    35,    36
+       0,    27,    27,    29,    30,    32,    39,    50,    59,    70
 };
 #endif
 
@@ -1320,41 +1320,78 @@ yyreduce:
     {
   case 5:
 #line 32 "zoomjoystrong.y"
-                                                          {point((yyvsp[-2].fVal), (yyvsp[-1].fVal));}
-#line 1325 "zoomjoystrong.tab.c"
-    break;
-
-  case 6:
-#line 33 "zoomjoystrong.y"
-                                                          {line((yyvsp[-4].fVal), (yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));}
+                                                          {if ((yyvsp[-2].fVal) < 0 || (yyvsp[-2].fVal) > WIDTH) {
+	                                                       printf("Invalid X");
+							   } else if ((yyvsp[-1].fVal) < 0 || (yyvsp[-1].fVal) > HEIGHT) {
+                                                               printf("Invalid Y");
+							   } else {
+  							       point((yyvsp[-2].fVal), (yyvsp[-1].fVal));
+							   }}
 #line 1331 "zoomjoystrong.tab.c"
     break;
 
+  case 6:
+#line 39 "zoomjoystrong.y"
+                                                          {if ((yyvsp[-4].fVal) < 0 || (yyvsp[-4].fVal) > WIDTH) {
+                                                               printf("Invalid X1");
+                                                           } else if ((yyvsp[-3].fVal) < 0 || (yyvsp[-3].fVal) > HEIGHT) {
+                                                               printf("Invalid Y1");
+                                                           } else if ((yyvsp[-2].fVal) < 0 || (yyvsp[-2].fVal) > WIDTH) {
+                                                               printf("Invalid X2");
+                                                           } else if ((yyvsp[-1].fVal) < 0 || (yyvsp[-1].fVal) > HEIGHT) {
+                                                               printf("Invalid Y2");
+                                                           } else {
+							       line((yyvsp[-4].fVal), (yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));
+							   }}
+#line 1347 "zoomjoystrong.tab.c"
+    break;
+
   case 7:
-#line 34 "zoomjoystrong.y"
-                                                          {circle((yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));}
-#line 1337 "zoomjoystrong.tab.c"
+#line 50 "zoomjoystrong.y"
+                                                          {if ((yyvsp[-3].fVal) < 0 || (yyvsp[-3].fVal) > WIDTH) {
+                                                               printf("Invalid X");
+                                                           } else if ((yyvsp[-2].fVal) < 0 || (yyvsp[-2].fVal) > HEIGHT) {
+                                                               printf("Invalid Y");
+                                                           } else if ((yyvsp[-3].fVal)-(yyvsp[-1].fVal) < 0 || (yyvsp[-3].fVal)+(yyvsp[-1].fVal) > WIDTH || (yyvsp[-2].fVal)-(yyvsp[-1].fVal) < 0 || (yyvsp[-2].fVal)+(yyvsp[-1].fVal) > HEIGHT) {
+                                                               printf("Invalid R");
+							   } else {
+							       circle((yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));
+     							   }}
+#line 1361 "zoomjoystrong.tab.c"
     break;
 
   case 8:
-#line 35 "zoomjoystrong.y"
-                                                          {rectangle((yyvsp[-4].fVal), (yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));}
-#line 1343 "zoomjoystrong.tab.c"
+#line 59 "zoomjoystrong.y"
+                                                          {if ((yyvsp[-4].fVal) < 0 || (yyvsp[-4].fVal) > WIDTH) {
+                                                               printf("Invalid X");
+                                                           } else if ((yyvsp[-3].fVal) < 0 || (yyvsp[-3].fVal) > HEIGHT) {
+                                                               printf("Invalid Y");
+                                                           } else if ((yyvsp[-4].fVal)-((yyvsp[-2].fVal)/2) < 0 || (yyvsp[-4].fVal)+((yyvsp[-2].fVal)/2) > WIDTH) {
+                                                               printf("Invalid W");
+                                                           } else if ((yyvsp[-3].fVal)-((yyvsp[-1].fVal)/2) < 0 || (yyvsp[-3].fVal)+((yyvsp[-1].fVal)/2) > HEIGHT) {
+                                                               printf("Invalid H");
+                                                           } else {
+                                                               rectangle((yyvsp[-4].fVal), (yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));
+                                                           }}
+#line 1377 "zoomjoystrong.tab.c"
     break;
 
   case 9:
-#line 36 "zoomjoystrong.y"
-                                                          {if ((yyvsp[-3].fVal) > 255 || (yyvsp[-3].fVal) < 0 || (yyvsp[-2].fVal) > 255 || (yyvsp[-2].fVal) < 0 || (yyvsp[-1].fVal) > 255 || (yyvsp[-1].fVal) < 0) {
-                                                              printf("Parameters are invalid.\n");
-                                                           } else {   
-                                                            set_color((yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));
-                                                            }
-                                                            }
-#line 1354 "zoomjoystrong.tab.c"
+#line 70 "zoomjoystrong.y"
+                                                          {if ((yyvsp[-3].fVal) < 0 || (yyvsp[-3].fVal) > 255) {
+                                                               printf("Invalid R");
+                                                           } else if ((yyvsp[-2].fVal) < 0 || (yyvsp[-2].fVal) > 255) {
+                                                               printf("Invalid G");
+                                                           } else if ((yyvsp[-1].fVal) < 0 || (yyvsp[-1].fVal) > 255) {
+                                                               printf("Invalid B");
+                                                           } else {
+                                                               set_color((yyvsp[-3].fVal), (yyvsp[-2].fVal), (yyvsp[-1].fVal));
+                                                           }}
+#line 1391 "zoomjoystrong.tab.c"
     break;
 
 
-#line 1358 "zoomjoystrong.tab.c"
+#line 1395 "zoomjoystrong.tab.c"
 
       default: break;
     }
@@ -1586,7 +1623,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 44 "zoomjoystrong.y"
+#line 81 "zoomjoystrong.y"
 
 
 void yyerror(const char* msg) {
@@ -1594,5 +1631,7 @@ void yyerror(const char* msg) {
 }
 
 int main(int argc, char** argv) {
+    setup();
     yyparse();
+    finish();
 }

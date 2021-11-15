@@ -15,8 +15,6 @@ rectangle      {return RECTANGLE;}
 set_color      {return SET_COLOR;}
 [0-9]+         {return INT;}
 [0-9]+\.[0-9]+ {return FLOAT;}
-\s             {;}
-\t             {;}
-\n             {;}
-[:graph:]+     {printf("ERROR");}
+[ \r\t\n]      ;
+.		;
 %%
