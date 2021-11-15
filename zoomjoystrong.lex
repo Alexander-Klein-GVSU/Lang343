@@ -3,17 +3,17 @@
 %}
 
 %%
-finish         printf("END");
-;              printf("END_STATEMENT");
-point          printf("POINT");
-line           printf("LINE");
-circle         printf("CIRCLE");
-rectangle      printf("RECTANGLE");
-set_color      printf("SET_COLOR");
-[0-9]+         printf("INT");
-[0-9]+\.[0-9]+ printf("FLOAT");
-\s             printf("");
-\t             printf("");
-\n             printf("");
-[:graph:]+     printf("ERROR");
+end            return "END";
+;              return "END_STATEMENT";
+point          return "POINT";
+line           return "LINE";
+circle         return "CIRCLE";
+rectangle      return "RECTANGLE";
+set_color      return "SET_COLOR";
+[0-9]+         return "INT";
+[0-9]+\.[0-9]+ return "FLOAT";
+\s             return "";
+\t             return "";
+\n             return "";
+[:graph:]+     return "ERROR";
 %%
