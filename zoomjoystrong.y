@@ -2,8 +2,14 @@
 #include <stdio.h>
 #include "zoomjoystrong.h"
 void yyerror(const char* msg);
+extern int yylineno;
 extern int yylex();
 %}
+
+%{/* Names: Alexander Klein and Jon Hoeve
+   * Date: 11/17/21
+   * Assignment: Create a Language (Bison File)
+   */%}
 
 %union {
     int fVal;
@@ -35,7 +41,7 @@ statement:        POINT INT INT END_STATEMENT             {point($2, $3);}
               |   SET_COLOR INT INT INT END_STATEMENT     {if ($2 > 255 || $2 < 0 || $3 > 255 || $3 < 0 || $4 > 255 || $4 < 0) {
                                                               printf("Parameters are invalid.\n");
                                                            } else {   
-                                                            set_color();
+                                                            set_color($2, $3, $4);
                                                             }
                                                             }
               ;
@@ -43,7 +49,7 @@ statement:        POINT INT INT END_STATEMENT             {point($2, $3);}
 %%
 
 void yyerror(const char* msg) {
-    fprintf(stder, "There is an error on line %d.\n%s\n", yylineno, msg);
+    fprintf(stderr, "There is an error on line %d.\n%s\n", yylineno, msg);
 }
 
 int main(int argc, char** argv) {
