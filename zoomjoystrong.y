@@ -5,6 +5,10 @@ void yyerror(const char* msg);
 extern int yylex();
 %}
 
+%union {
+    int fVal;
+}
+
 %token END
 %token END_STATEMENT
 %token POINT
@@ -15,10 +19,11 @@ extern int yylex();
 %token INT
 %token FLOAT
 %token ERROR
+%type<fVal> INT
 
 %%
 
-program:          statement_list END
+program:          statement_list END END_STATEMENT
        ;
 statement_list:   statement
               |   statement statement_list
@@ -33,7 +38,6 @@ statement:        POINT INT INT END_STATEMENT             {point($2, $3);}
                                                             set_color();
                                                             }
                                                             }
-              |   ERROR                                   {yyerror();}
               ;
 
 %%
